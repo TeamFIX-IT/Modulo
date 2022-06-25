@@ -1,0 +1,58 @@
+@import "../styleVar/colorPalette.scss";
+
+.form-container {
+    background-color: white;
+    padding: 20px;
+    margin: 100px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba($color: #000000, $alpha: 0.3);
+    display: flex;
+    align-items: center;
+  justify-content: center;
+
+    .wrapper {
+        width: 40%;
+
+        label {
+            font-size: 15px;
+            color: $P4;
+        
+        }
+        
+        input {
+            padding: 3px;
+            background-color: $P8;
+            border-style: none;
+            border-radius: 5px;
+            width: 100%;
+        
+        
+        }
+        
+        input:focus {
+            background-color: rgb(255, 122, 120);
+        }
+        
+        button {
+            border: none;
+            color: white;
+            background-color: $P4;
+            border-radius: 5px;
+            padding: 5px;
+            width: 100%;
+            box-shadow: 1px 1px 1px rgba($color: #000000, $alpha: 0.3);
+            font-weight: bold;
+        }
+        
+        button:focus {
+            background-color: rgb(255, 122, 120);
+        }
+    }
+
+    .img {
+        width: 50%;
+        padding-left: 30px;
+        margin-top: -50px;
+    }
+}
+

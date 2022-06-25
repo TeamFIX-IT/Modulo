@@ -4,6 +4,7 @@ using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220624004416_InstitutehasDegrees")]
+    partial class InstitutehasDegrees
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -130,56 +132,6 @@ namespace API.Migrations
                     b.ToTable("Notices");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.TimelineEvent", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int?>("BatchId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("DegreeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("EventTitle")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("InstituteId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Level")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Semester")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BatchId");
-
-                    b.HasIndex("DegreeId");
-
-                    b.HasIndex("InstituteId");
-
-                    b.ToTable("TimelineEvents");
-                });
-
             modelBuilder.Entity("API.Models.Entities.User", b =>
                 {
                     b.Property<int>("Id")
@@ -259,6 +211,41 @@ namespace API.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("API.Models.Timeline.TimelineEvent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EventTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Level")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Semester")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TimelineEvents");
+                });
+
             modelBuilder.Entity("InstituteUser", b =>
                 {
                     b.Property<int>("InstitutesId")
@@ -296,29 +283,6 @@ namespace API.Migrations
                     b.Navigation("Institute");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.TimelineEvent", b =>
-                {
-                    b.HasOne("API.Models.Entities.Batch", "Batch")
-                        .WithMany("TimelineEvents")
-                        .HasForeignKey("BatchId");
-
-                    b.HasOne("API.Models.Entities.Degree", "Degree")
-                        .WithMany("TimelineEvents")
-                        .HasForeignKey("DegreeId");
-
-                    b.HasOne("API.Models.Entities.Institute", "Institute")
-                        .WithMany("TimelineEvents")
-                        .HasForeignKey("InstituteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Batch");
-
-                    b.Navigation("Degree");
-
-                    b.Navigation("Institute");
-                });
-
             modelBuilder.Entity("API.Models.Entities.User", b =>
                 {
                     b.HasOne("API.Models.Entities.Batch", "Batch")
@@ -351,15 +315,11 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.Entities.Batch", b =>
                 {
-                    b.Navigation("TimelineEvents");
-
                     b.Navigation("Users");
                 });
 
             modelBuilder.Entity("API.Models.Entities.Degree", b =>
                 {
-                    b.Navigation("TimelineEvents");
-
                     b.Navigation("Users");
                 });
 
@@ -368,8 +328,6 @@ namespace API.Migrations
                     b.Navigation("Batches");
 
                     b.Navigation("Degrees");
-
-                    b.Navigation("TimelineEvents");
                 });
 #pragma warning restore 612, 618
         }

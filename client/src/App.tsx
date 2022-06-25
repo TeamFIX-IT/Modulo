@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/Landing";
 import LecHallBooking from "./pages/LecHallBooking";
 import TimelinePage from "./pages/Timeline";
+import TimelineFormPage from "./pages/TimelineFormPage";
 import LecHomePage from "./pages/LecHomePage";
 import NoticeBoard from "./pages/NoticeBoard";
 import DocumentUpload from "./pages/DocumentUpload";
@@ -33,6 +34,7 @@ function App() {
           <Route path="/document-upload" element={<DocumentUpload />} />
           <Route path="/document-download" element={<DocumentDownload />} />
           <Route  path="/timeline" element={<TimelinePage/>}/>
+          <Route  path="/timelineform" element={<TimelineFormPage/>}/>
           <Route path="/lec-hall-allocation" element={<LecHomePage />} />
           <Route path="/noticeboard" element={<NoticeBoard />} />
           <Route path="/noticeboard-student" element={<NoticeboardStudent />} />
